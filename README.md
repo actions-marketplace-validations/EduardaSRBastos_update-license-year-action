@@ -38,19 +38,24 @@
 -
   ```yaml
   name: Update License Year
+  
   on:
     schedule:
       - cron: '0 0 1 1 *'  # Runs every January 1st
     workflow_dispatch:  # Allows manual trigger
+  
+  permissions:
+    contents: write
   
   jobs:
     update-license-year:
       runs-on: ubuntu-latest
       steps:
         - name: Update License Year Action
-          uses: EduardaSRBastos/update-license-year-action/update-license-year@main
+          uses: EduardaSRBastos/update-license-year-action@main
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
+
   ```
 
 ### Manual Trigger
