@@ -11,11 +11,18 @@ inputs:
     description: 'GitHub token to push changes'
     required: true
 
+  branch:
+    description: 'Branch to update'
+    required: false
+    default: ${{ github.ref_name }}
+
 runs:
   using: 'composite'
   steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        ref: ${{ inputs.branch }}
 
     - name: Update License Year
       run: bash ${{ github.action_path }}/script.sh
